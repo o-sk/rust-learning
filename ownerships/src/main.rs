@@ -1,6 +1,9 @@
 fn main() {
     let s = String::from("hello");
 
+    let len = calculate_length(&s);
+    println!("length: {}", len);
+
     takes_ownership(s);
     // takes_ownership(s); // Error: use of moved value
 
@@ -16,4 +19,8 @@ fn takes_ownership(some_string: String) {
 
 fn makes_copy(some_integer: i32) {
     println!("{}", some_integer);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
 }
