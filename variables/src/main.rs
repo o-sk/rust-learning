@@ -6,4 +6,10 @@ fn main() {
 
     let tup = (500, 6.4, 1);
     println!("The values of tup are: ({}, {}, {})", tup.0, tup.1, tup.2);
+
+    another_function();
+}
+
+fn another_function() {
+    println!("Another function.");
 }
