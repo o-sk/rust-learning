@@ -8,6 +8,11 @@ fn main() {
     println!("The values of tup are: ({}, {}, {})", tup.0, tup.1, tup.2);
 
     another_function();
+
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+    println!("LIFTOFF!!!");
 }
 
 fn another_function() {
