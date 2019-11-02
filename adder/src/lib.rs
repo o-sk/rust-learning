@@ -3,6 +3,10 @@ pub fn add_two(a: i32) -> i32 {
     a + 2
 }
 
+fn internal_adder(a: i32, b: i32) -> i32 {
+    a + b
+}
+
 mod tests {
     use super::*;
 
@@ -30,5 +34,10 @@ mod tests {
     #[ignore]
     fn another() {
         panic!("Make this test fail");
+    }
+
+    #[test]
+    fn internal() {
+        assert_eq!(4, internal_adder(2, 2));
     }
 }
