@@ -15,7 +15,9 @@ impl Post {
     self.content.push_str(text);
   }
 
-  g
+  pub fn content(&self) -> &str {
+    ""
+  }
 }
 
 trait State {}
