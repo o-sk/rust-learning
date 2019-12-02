@@ -3,12 +3,22 @@ use std::sync::mpsc;
 use std::sync::Mutex;
 use std::thread;
 
+trait FnBox {
+  fn call_box(self: Box<Self>);
+}
+
+impl<F: FnOnce()> FnBox for F {
+  fn call_box(self: Box<F>) {
+    (*self)()
+  }
+}
+
 pub struct ThreadPool {
   workers: Vec<Worker>,
   sender: mpsc::Sender<Job>,
 }
 
-type Job = Box<FnOnce() + Send + 'static>;
+type Job = Box<FnBox + Send + 'static>;
 
 impl ThreadPool {
   pub fn new(size: usize) -> ThreadPool {
@@ -49,7 +59,7 @@ impl Worker {
 
       println!("Worker {} got a job; executing.", id);
 
-      (*job)();
+      job.call_box();
     });
 
     Worker {
