@@ -20,6 +20,11 @@ pub struct ThreadPool {
 
 type Job = Box<FnBox + Send + 'static>;
 
+enum Message {
+  NewJob(Job),
+  Terminate,
+}
+
 impl ThreadPool {
   pub fn new(size: usize) -> ThreadPool {
     assert!(size > 0);
